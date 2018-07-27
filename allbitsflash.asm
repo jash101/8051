@@ -1,3 +1,4 @@
+; Code to alternate toggle all the 8 bits in Port 1 of 8051
 start:
 mov p1, #0ffh
 call delay
