@@ -1,17 +1,17 @@
-; Code to alternate toggle all the 8 bits in Port 1 of 8051
-start:
-mov p1, #0ffh
-call delay
-mov p1, #00h
-call delay
-sjmp start
+; CODE TO ALTERNATE TOGGLE ALL THE 8 BITS IN PORT 1 OF 8051
+START:
+		MOV P1, #0FFH
+		CALL DELAY
+		MOV P1, #00H
+		CALL DELAY
+		SJMP START
 
-delay:
-mov r2, #0ah
-loop1: mov r1, #0c8h
-loop0: mov r0, #0ffh
-wait: djnz r0, wait
-	djnz r1, loop0
-	djnz r2, loop1
-reti
-end
+DELAY:
+		MOV R2, #0AH
+LOOP1:  MOV R1, #0C8H
+LOOP0:  MOV R0, #0FFH
+WAIT:   DJNZ R0, WAIT
+		DJNZ R1, LOOP0
+		DJNZ R2, LOOP1
+		RETI
+		END
