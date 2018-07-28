@@ -1,0 +1,16 @@
+;I DON'T KNOW WHAT THIS IS YET... #fUCKiT
+		  MOV P1, #0CH
+		
+BACK:	JNB P1.2, L1
+		  CLR P1.0
+		  SJMP OVER
+		
+L1:		SETB P1.0
+
+OVER:	JNB P1.3, L2
+		  CLR P1.1
+		  SJMP BACK
+		
+L2:		SETB P1.1
+		  SJMP BACK
+		  END
