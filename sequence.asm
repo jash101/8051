@@ -1,37 +1,40 @@
-start:
-setb p1.0
-call delay
-setb p1.1
-call delay
-setb p1.2
-call delay
+;TOGGLE BIT 0, THEN 1... AND SO ON
+START:
+		SETB P1.0
+		CALL DELAY
+		
+		SETB P1.1
+		CALL DELAY
+		
+		SETB P1.2
+		CALL DELAY
+		
+		SETB P1.3
+		CALL DELAY
+		
+		SETB P1.4
+		CALL DELAY
+		
+		SETB P1.5
+		CALL DELAY
+		
+		SETB P1.6
+		CALL DELAY
+		
+		SETB P1.7
+		CALL DELAY
 
-setb p1.3
-call delay
-setb p1.4
+		MOV P1, #00H
+		CALL DELAY
 
-call delay
-setb p1.5
+		SJMP START
 
-call delay
-setb p1.6
-
-call delay
-setb p1.7
-
-call delay
-
-mov p1, #00h
-call delay
-
-sjmp start
-
-delay:
-mov r2, #0ah
-loop1: mov r1, #0c8h
-loop0: mov r0, #0ffh
-wait: djnz r0, wait
-	djnz r1, loop0
-	djnz r2, loop1
-reti
-end
+DELAY:
+		MOV R2, #0AH
+LOOP1:  MOV R1, #0C8H
+LOOP0:  MOV R0, #0FFH
+WAIT:   DJNZ R0, WAIT
+	    DJNZ R1, LOOP0
+		DJNZ R2, LOOP1
+		RETI
+		END
