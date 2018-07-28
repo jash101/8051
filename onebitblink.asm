@@ -1,16 +1,20 @@
-start:
-cpl p1.2
+;SQUARE WAVE AT P1.2 FOR 0.5 SECONDS
+START:
+	   CPL P1.2
+	
 
-call delay
+	   CALL DELAY
+	
 
-sjmp start
+	   SJMP START
+	
 
-delay:
-mov r2, #0ah
-loop1: mov r1, #0c8h
-loop0: mov r0, #0ffh
-wait: djnz r0, wait
-	djnz r1, loop0
-	djnz r2, loop1
-reti
-end
+DELAY:
+       MOV R2, #0AH
+LOOP1: MOV R1, #0C8H
+LOOP0: MOV R0, #0FFH
+WAIT:  DJNZ R0, WAIT
+       DJNZ R1, LOOP0
+       DJNZ R2, LOOP1
+       RETI
+	   END
