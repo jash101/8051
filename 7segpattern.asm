@@ -1,0 +1,100 @@
+;ZIGZAG PATTERN ON FOUR 7-SEGMENT LED DISPLAYS
+START:	
+		MOV		P3,		#00H
+		MOV		P1,		#0FEH
+		ACALL	DELAY
+		
+		MOV		P3,		#01H
+		MOV		P1,		#0FEH
+		ACALL DELAY
+		
+		MOV		P3,		#02H
+		MOV		P1,		#0FEH
+		ACALL DELAY
+
+		MOV		P3,		#03H
+		MOV		P1,		#0FEH
+		ACALL DELAY
+		
+		MOV		P3,		#03H
+		MOV		P1,		#0FDH
+		ACALL DELAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		MOV		P3,		#03H
+		MOV		P1,		#0BFH
+		ACALL DELAY
+		
+		MOV		P3,		#02H
+		MOV		P1,		#0BFH
+		ACALL DELAY
+		
+		MOV		P3,		#01H
+		MOV		P1,		#0BFH
+		ACALL DELAY		
+
+		MOV		P3,		#00H
+		MOV		P1,		#0BFH
+		ACALL DELAY
+		
+		MOV		P3,		#00H
+		MOV		P1,		#0EFH
+		ACALL DELAY			
+
+		MOV		P3,		#00H
+		MOV		P1,		#0F7H	;
+		ACALL DELAY	
+		
+		MOV		P3,		#01H
+		MOV		P1,		#0F7H
+		ACALL DELAY	
+
+		MOV		P3,		#02H
+		MOV		P1,		#0F7H
+		ACALL DELAY
+		
+		MOV		P3,		#03H
+		MOV		P1,		#0F7H
+		ACALL DELAY		
+
+		MOV		P3,		#03H
+		MOV		P1,		#0FBH 	;
+		ACALL DELAY
+		
+		MOV		P3,		#03H
+		MOV		P1,		#0BFH
+		ACALL DELAY
+		
+		MOV		P3,		#02H
+		MOV		P1,		#0BFH
+		ACALL DELAY
+		
+		MOV		P3,		#01H
+		MOV		P1,		#0BFH
+		ACALL DELAY		
+
+		MOV		P3,		#00H
+		MOV		P1,		#0BFH
+		ACALL DELAY		
+
+		MOV		P3,		#00H
+		MOV		P1,		#0DFH
+		ACALL DELAY		
+		
+		JMP	START
+DELAY:
+	   MOV R0, #01H	 ;50 MILISECONDS * 20 TIMES
+UP:    MOV TMOD, #10H;TIMER MODE SELECTION
+	   MOV TL1, #0B0H ;LOAD TL COUNTER VALUE
+	   MOV TH1, #3CH  ;LOAD TH COUNTER VALUE
+	   SETB TR1		 ;START TIMER
+	   
+HERE:
+	   JNB TF1, HERE  ;WAIT TILL TF = 1 (OVERFLOW)
+	   
+	   CLR TR1		;STOP TIMER
+	   CLR TF1		;CLEAR TF1
+	   DJNZ R0, UP	;
+	   
+	   RETI
+	   
